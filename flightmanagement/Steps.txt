@@ -1,0 +1,22 @@
+cd /opt/
+
+sudo yum install java-1.8.0-devel
+sudo /usr/sbin/alternatives --config java
+sudo /usr/sbin/alternatives --config javac
+
+wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip
+ls -ltr
+unzip apache-maven-3.8.6-bin.zip
+
+echo "PATH=$PATH:/opt/apache-maven-3.8.6/bin" >> ~/.bash_profile
+echo "export PATH" >> ~/.bash_profile
+source ~/.bash_profile
+
+java
+javac
+mvn clean package -DskipTest
+
+docker login
+
+docker image build -t shashi171816/terminsurance .
+docker pu
